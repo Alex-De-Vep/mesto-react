@@ -74,7 +74,7 @@ class Api {
             body: JSON.stringify(data)
         })
             .then(res => {
-                return thapiis._getResponseData(res);
+                return this._getResponseData(res);
             });
     }
 
