@@ -8,7 +8,7 @@ function Card({card, onCardClick}) {
     return(
         <article className="card">
             <button className="card__image-button" onClick={handleClick}>
-                <img className="card__image" src="src/components/App#" alt="#" style={{ backgroundImage: `url(${card.link})` }} />
+                <img className="card__image" src={card.link} alt={card.name} />
             </button>
             <div className="card__info">
                 <h3 className="card__text">{card.name}</h3>

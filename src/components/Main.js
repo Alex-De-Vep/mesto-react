@@ -23,7 +23,6 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
         api.getCards()
             .then((data) => {
                 setCards(data);
-                console.log(data);
             })
             .catch((err) => {
                 console.log(err);
