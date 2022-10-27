@@ -1,6 +1,7 @@
 import React, {useRef} from "react";
+import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
+function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, submitButton}) {
     const inputRef = useRef();
 
     function handleSubmit(e) {
@@ -12,18 +13,14 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
     }
 
     return(
-        <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id="update-avatar-popup">
-            <div className="popup__container">
-                <h2 className="popup__title">Обновить аватар</h2>
-                <button className="popup__close" type="button" aria-label="Закрыть попап" onClick={onClose}></button>
-                <form className="popup__form" name="avatar-form" noValidate onSubmit={handleSubmit}>
-                    <input type="url" className="popup__input" name="avatar" id="avatar"
-                           placeholder="Ссылка на картинку" ref={inputRef} aria-label="Введите ссылку на картинку" required />
-                        <span className="popup__input-error popup__avatar-error"></span>
-                        <button type="submit" className="popup__button">Сохранить</button>
-                </form>
-            </div>
-        </div>
+        <PopupWithForm title={"Обновить аватар"} formName={"avatar-form"} onSubmit={handleSubmit} isOpen={isOpen} onClose={onClose} children={
+            <>
+                <input type="url" className="popup__input" name="avatar" id="avatar"
+                       placeholder="Ссылка на картинку" ref={inputRef} aria-label="Введите ссылку на картинку" required />
+                <span className="popup__input-error popup__avatar-error"></span>
+                <button type="submit" className="popup__button">{submitButton}</button>
+            </>
+        } />
     );
 }
 
