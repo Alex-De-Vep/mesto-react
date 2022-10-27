@@ -16,9 +16,9 @@ class Api {
         return res.json();
     }
 
-    updateAvatar(data, method) {
+    updateAvatar(data) {
         return fetch(`${this.baseUrl}/users/me/avatar`, {
-            method,
+            method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify(data)
         })
@@ -27,7 +27,8 @@ class Api {
             });
     }
 
-    toggleLike(method, cardId) {
+    toggleLike(cardId, isLiked) {
+        const method = isLiked ? "PUT" : "DELETE";
         return fetch(`${this.baseUrl}/cards/likes/${cardId}`, {
             method,
             headers: this.headers,
@@ -47,9 +48,9 @@ class Api {
             });
     }
 
-    addCard(data, method) {
+    addCard(data) {
         return fetch(`${this.baseUrl}/cards`, {
-            method,
+            method: 'POST',
             headers: this.headers,
             body: JSON.stringify(data)
         })
@@ -67,9 +68,9 @@ class Api {
             });
     }
 
-    updateUserInfo(data, method) {
+    updateUserInfo(data) {
         return fetch(`${this.baseUrl}/users/me`, {
-            method,
+            method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify(data)
         })

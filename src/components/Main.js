@@ -1,23 +1,9 @@
 import React from 'react';
-import api from "../utils/Api";
 import Card from "./Card";
 import { currentUserContext } from '../context/CurrentUserContext';
 
-function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
-    const [cards, setCards] = React.useState([]);
-    const userContext = React.useContext(currentUserContext);
-
-    React.useEffect(() => {
-        api.getCards()
-            .then((data) => {
-                setCards(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-
-    console.log(userContext);
+function Main({onEditProfile, onEditAvatar, onAddPlace, cards, onCardLike, onCardDelete, onCardClick}) {
+    const currentUser = React.useContext(currentUserContext);
 
     return (
         <main className="content">
@@ -27,16 +13,16 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                         <button data-profile-image onClick={onEditAvatar} className="profile__image-button">
                             <div className="profile__image-edit"></div>
                             <picture>
-                                <img className="profile__image" src={userContext.avatar} alt="Аватарка профиля" />
+                                <img className="profile__image" src={currentUser.avatar} alt="Аватарка профиля" />
                             </picture>
                         </button>
                         <div className="profile__info">
                             <div className="profile__title-wrapper">
-                                <h1 className="profile__title">{userContext.name}</h1>
+                                <h1 className="profile__title">{currentUser.name}</h1>
                                 <button className="profile__button-edit" type="button" data-popup-profile onClick={onEditProfile}>
                                 </button>
                             </div>
-                            <p className="profile__text">{userContext.about}</p>
+                            <p className="profile__text">{currentUser.about}</p>
                         </div>
                         <button className="profile__button" type="button" data-popup-add-card onClick={onAddPlace}>
                         </button>
@@ -49,7 +35,7 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                     <ul className="trips__list">
                         {cards.map((item) => (
                             <li className="trips__item" key={item._id}>
-                                <Card card={item} onCardClick={onCardClick} />
+                                <Card card={item} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} />
                             </li>
                         ))}
                     </ul>
