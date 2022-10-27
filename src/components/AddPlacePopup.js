@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup({onUpdatePlace, isOpen, onClose}) {
+function AddPlacePopup({onUpdatePlace, isOpen, onClose, submitButton}) {
     const [name, setName] = useState("");
     const [link, setLink] = useState("");
 
@@ -22,22 +23,18 @@ function AddPlacePopup({onUpdatePlace, isOpen, onClose}) {
     }
 
     return(
-        <div className={`popup ${isOpen ? 'popup_opened' : ''}`} id="add-card-popup">
-            <div className="popup__container">
-                <h2 className="popup__title">Новое место</h2>
-                <button className="popup__close" type="button" aria-label="Закрыть попап" data-close-popup onClick={onClose}></button>
-                <form className="popup__form" name="add-card-form" noValidate onSubmit={handleSubmit}>
-                    <input type="text" className="popup__input" value={name} onChange={handleChangeName} name="name" id="title" minLength="2" maxLength="30"
-                           placeholder="Название" data-title aria-label="Введите название" required/>
-                    <span className="popup__input-error popup__title-error"></span>
-                    <input type="url" className="popup__input" value={link} name="link" onChange={handleChangeLink} id="link"
-                           placeholder="Ссылка на картинку" data-link aria-label="Введите ссылку на картинку"
-                           required/>
-                    <span className="popup__input-error popup__link-error"></span>
-                    <button type="submit" className="popup__button">Создать</button>
-                </form>
-            </div>
-        </div>
+        <PopupWithForm title={"Новое место"} formName={"add-card-form"} onSubmit={handleSubmit} isOpen={isOpen} onClose={onClose} children={
+            <>
+                <input type="text" className="popup__input" value={name} onChange={handleChangeName} name="name" id="title" minLength="2" maxLength="30"
+                       placeholder="Название" aria-label="Введите название" required/>
+                <span className="popup__input-error popup__title-error"></span>
+                <input type="url" className="popup__input" value={link} name="link" onChange={handleChangeLink} id="link"
+                       placeholder="Ссылка на картинку" aria-label="Введите ссылку на картинку"
+                       required/>
+                <span className="popup__input-error popup__link-error"></span>
+                <button type="submit" className="popup__button">{submitButton}</button>
+            </>
+        } />
     );
 }
 
