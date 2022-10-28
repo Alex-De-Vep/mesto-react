@@ -23,7 +23,7 @@ function AddPlacePopup({onUpdatePlace, isOpen, onClose, submitButton}) {
     }
 
     return(
-        <PopupWithForm title={"Новое место"} formName={"add-card-form"} onSubmit={handleSubmit} isOpen={isOpen} onClose={onClose} children={
+        <PopupWithForm title={"Новое место"} formName={"add-card-form"} onSubmit={handleSubmit} submitButton={submitButton} isOpen={isOpen} onClose={onClose} children={
             <>
                 <input type="text" className="popup__input" value={name} onChange={handleChangeName} name="name" id="title" minLength="2" maxLength="30"
                        placeholder="Название" aria-label="Введите название" required/>
