@@ -13,7 +13,7 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, submitButton}) {
     }
 
     return(
-        <PopupWithForm title={"Обновить аватар"} formName={"avatar-form"} onSubmit={handleSubmit} isOpen={isOpen} onClose={onClose} children={
+        <PopupWithForm title={"Обновить аватар"} formName={"avatar-form"} onSubmit={handleSubmit} submitButton={submitButton} isOpen={isOpen} onClose={onClose} children={
             <>
                 <input type="url" className="popup__input" name="avatar" id="avatar"
                        placeholder="Ссылка на картинку" ref={inputRef} aria-label="Введите ссылку на картинку" required />
