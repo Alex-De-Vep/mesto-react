@@ -165,7 +165,12 @@ function App() {
                 setCards((oldCards) =>
                     oldCards.filter((oldCard) => oldCard._id !== card._id)
                 );
+            })
+            .then(() => {
                 closeAllPopups();
+            })
+            .catch((err) => {
+                console.log(err);
             });
     }
 

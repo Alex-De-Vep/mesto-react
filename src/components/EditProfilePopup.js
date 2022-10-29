@@ -32,7 +32,7 @@ function EditProfilePopup({onUpdateUser, isOpen, onClose, submitButton}) {
     }
 
     return (
-        <PopupWithForm title={"Редактировать профиль"} formName={"profile-form"} onSubmit={handleSubmit} isOpen={isOpen} onClose={onClose} children={
+        <PopupWithForm title={"Редактировать профиль"} formName={"profile-form"} onSubmit={handleSubmit} submitButton={submitButton} isOpen={isOpen} onClose={onClose} children={
             <>
                 <input type="text" className="popup__input" value={name ?? ''} onChange={handleChangeName} name="name" id="name" minLength="2" maxLength="40" required
                        data-name aria-label="Введите Имя" />
@@ -40,7 +40,6 @@ function EditProfilePopup({onUpdateUser, isOpen, onClose, submitButton}) {
                 <input type="text" className="popup__input" value={description ?? ''} onChange={handleChangeAbout} name="about" id="about" minLength="2" maxLength="200" required
                        data-about aria-label="Введите статус" />
                 <span className="popup__input-error popup__about-error"></span>
-                <button type="submit" className="popup__button">{submitButton}</button>
             </>
         } />
     );
